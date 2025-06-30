@@ -8,13 +8,14 @@ public class Main {
 
         System.out.printf("Enter membership status (Regular, VIP, Premium): ");
         String userMembership = scanner.nextLine();
+        userMembership = userMembership.toUpperCase();
 
         System.out.printf("Enter age: ");
         int userAge = scanner.nextInt();
 
         float membershipPrice = 0;
 
-        switch(userMembership.toUpperCase()){
+        switch(userMembership){
             case "REGULAR":
 
                 if (userAge < 18){
@@ -25,9 +26,6 @@ public class Main {
                 }
                 else if (userAge >64){
                     membershipPrice = 75.0f;
-                }
-                else {
-                    System.out.printf("Invalid Membership Status! ");
                 }
 
                 break;
@@ -57,6 +55,10 @@ public class Main {
                 }
 
                 break;
+            default:
+                System.out.printf("Invalid membership status entered.");
+                scanner.close();
+                return;
         }
 
         System.out.printf("Price: $%.2f", membershipPrice);
